@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <style>
+        @media (prefers-color-scheme: dark) {
+            .text {
+                fill: #121212;
+            }
+        }
+    </style>
+    <circle fill="#9a82f9" cx="32" cy="32" r="32"/>
+    <text class="text" x="50%" y="50%" dy="0.225em" text-anchor="middle" font-family="Georgia, sans-serif" fill="#fff" font-size="74">a</text>
+</svg>

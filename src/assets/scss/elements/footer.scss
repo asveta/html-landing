@@ -1,0 +1,29 @@
+.footer {
+  background: var(--bs-black);
+  color: var(--bs-white);
+
+  a {
+    color: inherit;
+  }
+
+  .footer-logo {
+    margin: .5em;
+  }
+
+  .footer-links a {
+    margin: .5em;
+  }
+
+  @include media-breakpoint-down(lg) {
+    .col-logo {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .col-links {
+      text-align: right;
+    }
+  }
+}

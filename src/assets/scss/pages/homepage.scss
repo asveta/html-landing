@@ -1,0 +1,14 @@
+.s-hero {
+  .hero-title {
+    margin: 2.5em 0 .5em;
+  }
+
+  .form-group {
+    margin: 1em 0;
+
+    .required {
+      color: var(--bs-red);
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+nav.navbar-light {
+  background: white;
+
+  .nav-item {
+    margin: .5em 1em;
+  }
+
+  .nav-link {
+    border: 1px solid;
+  }
+
+  .btn-outline-light {
+    border-color: var(--bs-light-rgb);
+  }
+}

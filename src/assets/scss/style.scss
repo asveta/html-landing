@@ -1,13 +1,15 @@
-$primary: #0074d9;
+$primary: #6746EC;
 $danger: #ff4136;
+$warning: #F6E018;
 
 $theme-colors: (
     "primary": $primary,
-    "danger": $danger
+    "danger": $danger,
+    "warning": $warning
 );
 
 $custom-colors: (
-    "custom-color": #900
+    //"custom-color": #900
 );
 
 // Merge the maps
@@ -16,7 +18,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "node_modules/bootstrap/scss/bootstrap";
 
 @import "elements/common";
-@import "elements/header";
 @import "elements/footer";
+@import "elements/form";
+@import "elements/header";
 
 @import "pages/homepage";

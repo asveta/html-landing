@@ -2,13 +2,36 @@
   .hero-title {
     margin: 2.5em 0 .5em;
   }
+}
 
-  .form-group {
+.bl-price {
+  padding: 5vh 3vw;
+  font-size: 125%;
+
+  .lead {
+    font-weight: bold;
+    font-size: 1.5rem;
     margin: 1em 0;
+  }
 
-    .required {
-      color: var(--bs-red);
-      font-weight: bold;
-    }
+  .l-action {
+    margin: 1em 0;
+  }
+
+  @include media-breakpoint-up(sm) {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.s-about {
+  padding: 3em 0;
+
+  .title {
+    margin: .75em 0;
+  }
+
+  .addon-info {
+    padding: 2em 0 .5em;
   }
 }

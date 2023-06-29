@@ -1,0 +1,43 @@
+@include media-breakpoint-up(sm) {
+  .top-form-fields {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.form-group {
+  margin: 1.5em 0;
+
+  label {
+    cursor: pointer;
+  }
+
+  .required {
+    color: var(--bs-red);
+    font-weight: bold;
+  }
+
+  .form-control,
+  .form-select {
+    background: #f5f5f5;
+    font-size: 1.125rem;
+    padding: 12px 20px;
+  }
+}
+
+.btn-lg {
+  padding: 12px 20px;
+}
+
+.btn-submit {
+  margin-top: 1rem;
+}
+
+.appeal-form {
+  .chosen-fields {
+    strong {
+      background: #f5f5f5;
+      padding: 2px 8px;
+    }
+  }
+}

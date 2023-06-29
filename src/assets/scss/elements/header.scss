@@ -13,3 +13,30 @@ nav.navbar-light {
     border-color: var(--bs-light-rgb);
   }
 }
+
+nav.navbar {
+  .btn-outline-primary {
+    border-color: $primary !important;
+    color: $primary;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  .btn-outline-warning {
+    background: $warning;
+    border-color: $warning !important;
+    color: #121212;
+
+    &:hover {
+      background: white;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    li.nav-item .btn {
+      padding: 6px 18px !important;
+    }
+  }
+}

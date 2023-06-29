@@ -10,6 +10,12 @@ img {
   padding-top: 60px;
 }
 
+@include media-breakpoint-up(md) {
+  .main {
+    min-height: 86.7vh;
+  }
+}
+
 .s {
   padding: 30px 0;
 

@@ -15,7 +15,8 @@ const del = require("del");
 const notify = require("gulp-notify");
 const webpackStream = require('webpack-stream');
 const browserSync = require("browser-sync").create();
-const ssh = require('gulp-ssh');
+const gulpSsh = require('gulp-ssh');
+require('dotenv').config()
 
 
 /* Paths */
@@ -47,6 +48,7 @@ const path = {
     clean: "./" + distPath
 }
 
+require('dotenv').config();
 
 
 /* Tasks */
@@ -204,36 +206,36 @@ function clean(cb) {
     cb();
 }
 
-
-
-// Define the SSH configuration for your remote web server
-const sshConfig = {
-    host: 'asveta.by',
-    port: 22,
-    username: 'asvetaby',
-    password: 'iSoh8yib'
-};
-
 // Define the path to the build directory
-const buildDir = './dist';
+const remoteBuildDir = './dist';
 
 // Define the path to the remote directory on the web server
 const remotePath = '/home/asvetaby/public_html';
 
 // Define a deployment task that deploys the contents of the build directory to the remote web server
 function deploy() {
+    // Define the SSH configuration for your remote web server
+    const sshConfig = {
+        host: process.env.SSH_HOST,
+        port: process.env.SSH_PORT,
+        username: process.env.SSH_USERNAME,
+        password: process.env.SSH_PASSWORD,
+    };
 
-    // Create an SSH client using the SSH configuration
-    const sshClient = ssh(sshConfig);
+    const sshClient = new gulpSsh({
+        sshConfig: sshConfig,
+    });
 
     // Define the source files to deploy
     const sourceFiles = [
-        `${buildDir}/**/*`
+        `${remoteBuildDir}/**/*`
     ];
 
     // Use the SSH client to upload the source files to the remote web server
     return gulp.src(sourceFiles)
         .pipe(sshClient.dest(remotePath));
+
+    cb();
 }
 
 // Define a task to clean up the remote directory on the web server
@@ -250,7 +252,9 @@ function cleanRemote(cb) {
 
 // Define a task to clean up the build directory
 function cleanLocal() {
-    return del(buildDir);
+    return del(remoteBuildDir);
+
+    cb();
 }
 
 function watchFiles() {

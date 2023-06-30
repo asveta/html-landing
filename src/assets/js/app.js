@@ -61,9 +61,10 @@ import {Modal} from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
         appealForm.addEventListener('show.bs.modal', (event) => {
             const isEmpty = !submitSubjectElem.value || !submitGradeElem.value || !submitTimeElem.value;
-            const shouldOpen = !isEmpty || confirm('Вы не заполнили все поля. Действительно желаете продолжить?');
+            const shouldOpen = !isEmpty/* || confirm('Вы не заполнили все поля. Действительно желаете продолжить?')*/;
 
             if (!shouldOpen) {
+                alert('Пожалуйста, выберите предмет, класс и желаемое время занятий.');
                 event.preventDefault();
                 event.stopPropagation();
             }

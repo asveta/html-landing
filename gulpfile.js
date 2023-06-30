@@ -15,6 +15,7 @@ const del = require("del");
 const notify = require("gulp-notify");
 const webpackStream = require('webpack-stream');
 const browserSync = require("browser-sync").create();
+const ssh = require('gulp-ssh');
 
 
 /* Paths */
@@ -203,6 +204,55 @@ function clean(cb) {
     cb();
 }
 
+
+
+// Define the SSH configuration for your remote web server
+const sshConfig = {
+    host: 'asveta.by',
+    port: 22,
+    username: 'asvetaby',
+    password: 'iSoh8yib'
+};
+
+// Define the path to the build directory
+const buildDir = './dist';
+
+// Define the path to the remote directory on the web server
+const remotePath = '/home/asvetaby/public_html';
+
+// Define a deployment task that deploys the contents of the build directory to the remote web server
+function deploy() {
+
+    // Create an SSH client using the SSH configuration
+    const sshClient = ssh(sshConfig);
+
+    // Define the source files to deploy
+    const sourceFiles = [
+        `${buildDir}/**/*`
+    ];
+
+    // Use the SSH client to upload the source files to the remote web server
+    return gulp.src(sourceFiles)
+        .pipe(sshClient.dest(remotePath));
+}
+
+// Define a task to clean up the remote directory on the web server
+function cleanRemote(cb) {
+
+    // Create an SSH client using the SSH configuration
+    const sshClient = ssh(sshConfig);
+
+    // Use the SSH client to run a command to delete the contents of the remote directory
+    return sshClient.shell(['rm -rf ' + remotePath + '/*']);
+
+    cb();
+}
+
+// Define a task to clean up the build directory
+function cleanLocal() {
+    return del(buildDir);
+}
+
 function watchFiles() {
     gulp.watch([path.watch.html], html);
     gulp.watch([path.watch.css], cssWatch);
@@ -226,3 +276,7 @@ exports.clean = clean;
 exports.build = build;
 exports.watch = watch;
 exports.default = watch;
+
+exports.deploy = deploy;
+exports.cleanRemote = cleanRemote;
+exports.cleanLocal = cleanLocal;
